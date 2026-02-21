@@ -1,14 +1,19 @@
-SAMPLES = ["SRR5660030", "SRR5660033", "SRR5660044", "SRR5660045"]
+FASTQ_DIR = config.get("fastq_dir", "fastq")
+
+def get_samples():
+    import pathlib
+    p = pathlib.Path(FASTQ_DIR)
+    return sorted(f.stem.replace("_1", "") for f in p.glob("*_1.fastq"))
 
 rule all:
     input:
         "PipelineReport.txt",
         "indexes/hcmv_kallisto.idx",
         "results/sleuth_significant.tsv",
-        expand("results/kallisto/{sample}", sample=SAMPLES),
-        expand("counts/{sample}.counts.txt", sample=SAMPLES),
-        expand("spades/{sample}/contigs.fasta", sample=SAMPLES),
-        expand("blast/{sample}.blast.tsv", sample=SAMPLES)
+        expand("results/kallisto/{sample}", sample=get_samples()),
+        expand("counts/{sample}.counts.txt", sample=get_samples()),
+        expand("spades/{sample}/contigs.fasta", sample=get_samples()),
+        expand("blast/{sample}.blast.tsv", sample=get_samples())
 
 rule download_hcmv_reference:
     output:
@@ -59,8 +64,8 @@ rule kallisto_index:
 rule run_kallisto_quant:
     input:
         index="indexes/hcmv_kallisto.idx",
-        r1="fastq/{sample}_1.fastq",
-        r2="fastq/{sample}_2.fastq"
+        r1=FASTQ_DIR + "/{sample}_1.fastq",
+        r2=FASTQ_DIR + "/{sample}_2.fastq"
     output:
         directory("results/kallisto/{sample}")
     shell:
@@ -70,7 +75,7 @@ rule run_kallisto_quant:
 
 rule run_sleuth:
     input:
-        expand("results/kallisto/{sample}", sample=SAMPLES)
+        expand("results/kallisto/{sample}", sample=get_samples())
     output:
         "results/sleuth_significant.tsv"
     script:
@@ -89,8 +94,8 @@ rule bowtie2_index:
 
 rule bowtie2_map:
     input:
-        r1="fastq/{sample}_1.fastq",
-        r2="fastq/{sample}_2.fastq",
+        r1=FASTQ_DIR + "/{sample}_1.fastq",
+        r2=FASTQ_DIR + "/{sample}_2.fastq",
         index="indexes/bowtie2_hcmv"
     output:
         "results/bowtie2/{sample}.mapped.bam"
@@ -102,7 +107,7 @@ rule bowtie2_map:
 
 rule count_reads:
     input:
-        r1="fastq/{sample}_1.fastq",
+        r1=FASTQ_DIR + "/{sample}_1.fastq",
         bam="results/bowtie2/{sample}.mapped.bam"
     output:
         counts="counts/{sample}.counts.txt",
@@ -163,9 +168,9 @@ rule blast_longest_contig:
 rule assemble_pipeline_report:
     input:
         "results/report_cds_count.txt",
-        expand("results/report_reads_{sample}.txt", sample=SAMPLES),
+        expand("results/report_reads_{sample}.txt", sample=get_samples()),
         "results/sleuth_significant.tsv",
-        expand("blast/{sample}.blast.tsv", sample=SAMPLES)
+        expand("blast/{sample}.blast.tsv", sample=get_samples())
     output:
         "PipelineReport.txt"
     shell:
@@ -197,4 +202,5 @@ rule cleanup:
         rm -f results/hcmv_cds_counts.txt
         rm -f indexes/hcmv_kallisto.idx
         rm -rf db/*
+        rm -f PipelineReport.txt
         """
