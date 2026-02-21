@@ -57,7 +57,7 @@ This pipeline automates the following tasks:
 - Python 
 - Snakemake
 - Biopython
-- R with sleuth package
+- R with sleuth package and dyplr
 - kallisto
 - Bowtie2
 - samtools
