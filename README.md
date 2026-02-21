@@ -22,7 +22,20 @@ Snakemake pipeline for HCMV transcriptome analysis. Automates quantification, di
 │   ├── SRR5660030_1.fastq
 │   ├── SRR5660030_2.fastq
 │   ├── SRR5660033_1.fastq
-│   └── ...
+│   ├── SRR5660033_2.fastq
+│   ├── SRR5660044_1.fastq
+│   ├── SRR5660044_2.fastq
+│   ├── SRR5660045_1.fastq
+│   └── SRR5660045_2.fastq
+├── sample_data/                  # Small test FASTQ files 
+│   ├── SRR5660030_1_sample.fastq
+│   ├── SRR5660030_2_sample.fastq
+│   ├── SRR5660033_1_sample.fastq
+│   ├── SRR5660033_2_sample.fastq
+│   ├── SRR5660044_1_sample.fastq
+│   ├── SRR5660044_2_sample.fastq
+│   ├── SRR5660044_1_sample.fastq
+│   └── SRR5660044_1_sample.fastq
 ├── ref/                          # HCMV reference genome & CDS
 ├── indexes/                      # kallisto & Bowtie2 indices
 ├── results/                      # Output: counts, kallisto results, sleuth results
