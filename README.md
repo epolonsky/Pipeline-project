@@ -89,7 +89,7 @@ cd pipeline-project
 ## Run the entire pipeline with sample data:
 
 ```bash
-snakemake -s snakefile --cores 4 --config fastq_dir="sample_data" > snakemake.log 2>&1
+snakemake -s snakefile -c 4 --config fastq_dir="sample_data" > snakemake.log 2>&1
 ```
 This command executes all rules from the snakefile, generating:
 PipelineReport.txt
@@ -106,7 +106,7 @@ cat PipelineReport.txt
 
 To remove all intermediate and output files:
 ```bash
-snakemake -s snakefile cleanup
+snakemake -s snakefile -c 1 cleanup
 ```
 
 ## Downloading SRA Data
@@ -120,7 +120,7 @@ fasterq-dump SRR5660045 --split-files --outdir fastq
 
 ## Run the entire pipeline with the full data set
 ```bash
-snakemake -s snakefile --cores 4 --config fastq_dir="fastq" > snakemake.log 2>&1
+snakemake -s snakefile -c 4 --config fastq_dir="fastq" > snakemake.log 2>&1
 ```
 
 ## Expected Outputs
