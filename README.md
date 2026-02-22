@@ -91,6 +91,11 @@ cd pipeline-project
 ```bash
 snakemake -s snakefile -c 4 --config fastq_dir="sample_data" > snakemake.log 2>&1
 ```
+## Run the entire pipline with sample data in the background:
+```bash
+nohup snakemake -s snakefile -c 4 --config fastq_dir="sample_data" > snakemake.log 2>&1 &
+```
+
 This command executes all rules from the snakefile, generating:
 PipelineReport.txt
 Kallisto indices and quantifications
@@ -109,7 +114,7 @@ To remove all intermediate and output files:
 snakemake -s snakefile -c 1 cleanup
 ```
 
-## Downloading SRA Data
+## Downloading SRA Data:
 Raw transcriptome data were retrieved from NCBI SRA using fasterq-dump. 
 ```bash
 fasterq-dump SRR5660030 --split-files --outdir fastq
@@ -118,9 +123,14 @@ fasterq-dump SRR5660044 --split-files --outdir fastq
 fasterq-dump SRR5660045 --split-files --outdir fastq
 ```
 
-## Run the entire pipeline with the full data set
+## Run the entire pipeline with the full data set:
 ```bash
 snakemake -s snakefile -c 4 --config fastq_dir="fastq" > snakemake.log 2>&1
+```
+
+## Run the entire pipiline with the full data set in the background:
+```bash
+nohup snakemake -s snakefile -c 4 --config fastq_dir="fastq" > snakemake.log 2>&1 &
 ```
 
 ## Expected Outputs
