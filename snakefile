@@ -103,7 +103,7 @@ rule bowtie2_map:
     shell:
         """
         mkdir -p results/bowtie2
-        bowtie2 -x {input.index}/bowtie2_index -1 {input.r1} -2 {input.r2} --no-unal | samtools fastq -1 {output.r1} -2 {output.r2} 
+        bowtie2 -x {input.index}/bowtie2_index -1 {input.r1} -2 {input.r2} --no-unal | samtools fastq -1 {output.r1} -2 {output.r2} -0 /dev/null -s /dev/null -n
         """
 
 rule count_reads:
