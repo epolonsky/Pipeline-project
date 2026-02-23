@@ -77,6 +77,17 @@ This pipeline automates the following tasks:
 | SRR5660045  | Donor 3, 6 dpi    |
 
 Each test file contains 10,000 reads for quick pipeline verification.
+The test files were made after downloading the full fastq data:
+```bash
+ head -n 40000 SRR5660030_1.fastq > SRR5660030_1.fastq
+ head -n 40000 SRR5660030_2.fastq > SRR5660030_2.fastq
+ head -n 40000 SRR5660033_1.fastq > SRR5660033_1.fastq
+ head -n 40000 SRR5660033_2.fastq > SRR5660033_2.fastq
+ head -n 40000 SRR5660044_1.fastq > SRR5660044_1.fastq
+ head -n 40000 SRR5660044_2.fastq > SRR5660044_2.fastq
+ head -n 40000 SRR5660045_1.fastq > SRR5660045_1.fastq
+ head -n 40000 SRR5660045_2.fastq > SRR5660045_2.fastq
+```
 
 # Running the Pipeline
 
