@@ -192,6 +192,7 @@ rule cleanup:
     shell:
         """
         rm -rf ncbi_dataset ncbi_dataset.zip
+        rm -rf ref
         rm -rf indexes
         rm -rf results
         rm -rf counts
