@@ -12,4 +12,4 @@ sleuth_table <- sleuth_results(so, 'reduced:full', 'lrt', show_all = FALSE) # ex
 sleuth_significant <- dplyr::filter(sleuth_table, qval <= 0.05) |> dplyr::arrange(pval) # filter most significant results (FDR/qval < 0.05) and sort by pval
 sleuth_significant_table <- data.frame(target_id = sleuth_significant$target_id, test_stat = sleuth_significant$test_stat, pval = sleuth_significant$pval, qval = sleuth_significant$qval) # extract only the target_id, test_stat, pval, and qval columns from the results
 
-write.table(sleuth_significant_table, file="results/sleuth_significant.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE, append = TRUE) # write FDR < 0.05 transcripts to file
+write.table(sleuth_significant_table, file="results/sleuth_significant.tsv", sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE, append = FALSE) # write FDR < 0.05 transcripts to file
