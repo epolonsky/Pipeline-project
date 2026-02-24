@@ -177,7 +177,6 @@ rule assemble_pipeline_report:
     shell:
         """
         cat results/report_cds_count.txt > {output}
-        echo "" >> {output}
         echo -e "\ntarget_id\ttest_stat\tpval\tqval" >> {output}
         tail -n +2 results/sleuth_significant.tsv >> {output}
         echo "" >> {output}
