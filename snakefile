@@ -178,9 +178,10 @@ rule assemble_pipeline_report:
         """
         cat results/report_cds_count.txt > {output}
         echo "" >> {output}
-        cat results/report_reads_*.txt >> {output}
         echo -e "\ntarget_id\ttest_stat\tpval\tqval" >> {output}
         tail -n +2 results/sleuth_significant.tsv >> {output}
+        echo "" >> {output}
+        cat results/report_reads_*.txt >> {output}
         for f in blast/*.blast.tsv; do
             sample=$(basename $f .blast.tsv)
             echo -e "\n$sample:" >> {output}
