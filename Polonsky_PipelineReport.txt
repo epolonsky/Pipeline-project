@@ -1,10 +1,5 @@
 The HCMV genome (GCF_000845245.1) has 169 CDS.
 
-Sample SRR5660030 had 2259287 read pairs before and 1791414 read pairs after Bowtie2 filtering
-Sample SRR5660033 had 2004530 read pairs before and 1389489 read pairs after Bowtie2 filtering
-Sample SRR5660044 had 2730258 read pairs before and 1943095 read pairs after Bowtie2 filtering
-Sample SRR5660045 had 2476889 read pairs before and 1289781 read pairs after Bowtie2 filtering
-
 target_id	test_stat	pval	qval
 YP_081600.1	21.3302395741574	3.86585011587626e-06	0.000365096257441961
 YP_081547.1	20.2323912735885	6.8581812605272e-06	0.000365096257441961
@@ -101,6 +96,11 @@ YP_081479.1	5.05546931907288	0.0245483327607355	0.042425922923445
 YP_081559.1	4.99531343708023	0.0254160499034109	0.0434532466090574
 YP_081546.1	4.88204656425585	0.0271374248436165	0.0459026654269683
 YP_081549.1	4.79884206060947	0.0284788715628019	0.0476646376682684
+
+Sample SRR5660030 had 2259287 read pairs before and 1791414 read pairs after Bowtie2 filtering
+Sample SRR5660033 had 2004530 read pairs before and 1389489 read pairs after Bowtie2 filtering
+Sample SRR5660044 had 2730258 read pairs before and 1943095 read pairs after Bowtie2 filtering
+Sample SRR5660045 had 2476889 read pairs before and 1289781 read pairs after Bowtie2 filtering
 
 SRR5660030:
 sacc	pident	length	qstart	qend	sstart	send	bitscore	evalue	stitle
